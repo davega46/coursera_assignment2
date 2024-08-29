@@ -9,13 +9,13 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file stats.c 
+ * @brief This file is the implementation file that will perform the statistal analysis requested in the first assignment on Introduction to Embedded Systems.
  *
  * <Add Extended Description Here>
  *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author David Vega
+ * @date 08-28-2024
  *
  */
 
@@ -41,3 +41,10 @@ void main() {
 }
 
 /* Add other Implementation File Code Here */
+void print_statistics( unsigned char array_data[], unsigned int size){}
+void print_array( unsigned char array_data[], unsigned int size ){}
+unsigned char find_median( unsigned char array_data[], unsigned int size ){}
+unsigned char find_mean( unsigned char array_data[], unsigned int size ){}
+unsigned char find_maximum( unsigned char array_data[], unsigned int size ){}
+unsigned char find_minimum( unsigned char array_data[], unsigned int size ){}
+void sort_array( unsigned char array_data[], unsigned int size ){}
