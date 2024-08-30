@@ -29,7 +29,7 @@ unsigned char find_median( unsigned char array_data[], unsigned int size );
 unsigned char find_mean( unsigned char array_data[], unsigned int size );
 unsigned char find_maximum( unsigned char array_data[], unsigned int size );
 unsigned char find_minimum( unsigned char array_data[], unsigned int size );
-void sort_array( unsigned char array_data[], unsigned int size )
+void sort_array( unsigned char array_data[], unsigned int size );
 
 /**
  * @brief print_statistics - Prints the statistics of array ( min, max, mean, mediun ).
