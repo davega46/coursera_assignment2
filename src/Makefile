@@ -10,15 +10,26 @@
 #*****************************************************************************
 
 #------------------------------------------------------------------------------
-# <Put a Description Here>
+# Purpose: A Makefile that can natively and cross compile an application.
+# 	   Supported platforms: HOST (Linux) and cross platform (ARM)
 #
 # Use: make [TARGET] [PLATFORM-OVERRIDES]
 #
 # Build Targets:
-#      <Put a description of the supported targets here>
+#      <FILE>.i - Generates <FILE>.i preprocessed output files
+#      <FILE>.asm - Generates <FILE>.asm assembly output files
+#      <FILE>.o - Generates <FILE>.o object files
+#      <FILE>.d - Generates <FILE>.d dependency files
+#
+#      compile-all - Compiles all object files. Does NOT link.
+#      build - Compiles all object files and links into a final executable.
+#      clean - Removes all compiled objects, preprocessed outputs, assembly outputs,
+#      	       executable files and build output files.
 #
 # Platform Overrides:
-#      <Put a description of the supported Overrides here
+#      CPU - ARM Cortex Architecture (cortex-m0plus, cortex-m4)
+#      ARCH - ARM Architecture (arm, thumb)
+#      SPECS - Specs file to give the linker (nosys.specs, nano.specs)
 #
 #------------------------------------------------------------------------------
 include sources.mk
@@ -44,8 +55,6 @@ TARGET = c1m2
 
 SIZE = size
 OBJDUMP = objdump
-
-MAIN = main
 
 ifeq ($(PLATFORM), MSP432)
 	CC = arm-none-eabi-gcc
@@ -91,10 +100,11 @@ $(TARGET).asm: $(TARGET).out
 	$(OBJDUMP) -d $(TARGET).out >> $@
 
 # Target required for the .PHONY build target
+# Also includes GNU size utility to display sizes of compiled sections inside of onject file and executable file outputs.
 $(TARGET).out: $(OBJS) $(DEPS)
 	$(CC) $(CFLAGS) $(INCLUDES) $(LDFLAGS) -o $@ $(OBJS)
-	$(SIZE) -Atd $(TARGET).out
 	$(SIZE) $(TARGET).out
+	$(SIZE) -Atd $(TARGET).out
 
 
 # .PHONY directives - For nonfile targets.
@@ -107,4 +117,6 @@ build: $(TARGET).out
 
 .PHONY: clean
 clean:
-	rm -f $(TARGET).asm $(TARGET).out $(TARGET).map $(PREPRC) $(ASSY) $(OBJS) $(DEPS)
+	rm -f *.asm *.out *.map *.i *.o *.d
+
+# Clean command didn't work: rm -f $(TARGET).asm $(TARGET).out $(TARGET).map $(PREPRC) $(ASSY) $(OBJS) $(DEPS)
