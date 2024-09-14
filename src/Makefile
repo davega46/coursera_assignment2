@@ -110,7 +110,7 @@ $(TARGET).out: $(OBJS) $(DEPS)
 # .PHONY directives - For nonfile targets.
 .PHONY: compile-all
 compile-all: $(OBJS)
-	$(CC) $(INCLUDES) $(OBJS) -c $(CLFAGS) - o $(TARGET).o
+	# $(CC) $(INCLUDES) $(OBJS) -c $(CLFAGS) - o $(TARGET).o
 
 .PHONY: build
 build: $(TARGET).out
